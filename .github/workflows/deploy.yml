@@ -36,6 +36,6 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync build/ s3://studio-44 \
+          aws s3 sync dist/ s3://studio-44 \
             --delete \
             --cache-control "max-age=31536000"
