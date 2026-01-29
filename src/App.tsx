@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import UserDetailsForm from "./components/UserDetailsForm";
 
 function App() {
   return (
@@ -41,8 +42,17 @@ function App() {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to="/user-details"
+                    className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 hover:scale-105 inline-block"
+                  >
+                    Sign Up
+                  </Link>
+                </li>
               </ul>
             </div>
+            <Route path="/user-details" element={<UserDetailsForm />} />
           </div>
         </nav>
 
