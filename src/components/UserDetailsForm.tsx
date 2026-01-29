@@ -14,17 +14,19 @@ function UserDetailsForm() {
     setIsError(false);
 
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "";
-      const response = await fetch(`${apiBaseUrl}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `https://ykc1nvzujj.execute-api.us-east-1.amazonaws.com/Prod/submit-user-data`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            email,
+          }),
         },
-        body: JSON.stringify({
-          username,
-          email,
-        }),
-      });
+      );
 
       const data = await response.json();
 
