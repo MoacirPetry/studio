@@ -15,7 +15,7 @@ function UserDetailsForm() {
 
     try {
       const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "";
-      const response = await fetch(`${apiBaseUrl}/signup`, {
+      const response = await fetch(`${apiBaseUrl}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -52,7 +52,6 @@ function App() {
                 </li>
               </ul>
             </div>
-            <Route path="/user-details" element={<UserDetailsForm />} />
           </div>
         </nav>
 
@@ -61,6 +60,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/user-details" element={<UserDetailsForm />} />
           </Routes>
         </main>
       </div>
