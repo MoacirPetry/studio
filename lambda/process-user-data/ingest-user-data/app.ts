@@ -12,10 +12,24 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
+        const body = JSON.parse(event.body || '{}');
+        const { username, email } = body;
+
+        if (!username || !email) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({
+                    message: 'Missing required fields: username and email',
+                }),
+            };
+        }
+
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: 'hello world',
+                message: 'Data received successfully',
+                username: username,
+                email: email,
             }),
         };
     } catch (err) {
