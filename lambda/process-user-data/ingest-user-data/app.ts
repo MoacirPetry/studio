@@ -11,6 +11,11 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
  */
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*', // Required for CORS
+    };
+
     try {
         const body = JSON.parse(event.body || '{}');
         const { username, email } = body;
@@ -18,6 +23,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
         if (!username || !email) {
             return {
                 statusCode: 400,
+                headers, // Add headers here
                 body: JSON.stringify({
                     message: 'Missing required fields: username and email',
                 }),
@@ -26,6 +32,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
 
         return {
             statusCode: 200,
+            headers, // Add headers here
             body: JSON.stringify({
                 message: 'Data received successfully',
                 username: username,
@@ -36,6 +43,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
         console.log(err);
         return {
             statusCode: 500,
+            headers, // Add headers here
             body: JSON.stringify({
                 message: 'some error happened',
             }),
