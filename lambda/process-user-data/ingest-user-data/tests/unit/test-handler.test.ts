@@ -1,24 +1,29 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { lambdaHandler } from '../../app';
-import { expect, describe, it } from '@jest/globals';
+import { expect, describe, it } from 'vitest';
 
 describe('Unit test for app handler', function () {
     it('verifies successful response', async () => {
         const event: APIGatewayProxyEvent = {
-            httpMethod: 'get',
-            body: '',
-            headers: {},
+            httpMethod: 'POST',
+            body: JSON.stringify({
+                username: 'John Doe',
+                email: 'john@example.com',
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
             isBase64Encoded: false,
             multiValueHeaders: {},
             multiValueQueryStringParameters: {},
-            path: '/hello',
+            path: '/ingest',
             pathParameters: {},
             queryStringParameters: {},
             requestContext: {
                 accountId: '123456789012',
                 apiId: '1234',
                 authorizer: {},
-                httpMethod: 'get',
+                httpMethod: 'POST',
                 identity: {
                     accessKey: '',
                     accountId: '',
@@ -42,12 +47,12 @@ describe('Unit test for app handler', function () {
                     userAgent: '',
                     userArn: '',
                 },
-                path: '/hello',
+                path: '/ingest',
                 protocol: 'HTTP/1.1',
                 requestId: 'c6af9ac6-7b61-11e6-9a41-93e8deadbeef',
                 requestTimeEpoch: 1428582896000,
                 resourceId: '123456',
-                resourcePath: '/hello',
+                resourcePath: '/ingest',
                 stage: 'dev',
             },
             resource: '',
@@ -58,7 +63,9 @@ describe('Unit test for app handler', function () {
         expect(result.statusCode).toEqual(200);
         expect(result.body).toEqual(
             JSON.stringify({
-                message: 'hello world',
+                message: 'Data received successfully',
+                username: 'John Doe',
+                email: 'john@example.com',
             }),
         );
     });
