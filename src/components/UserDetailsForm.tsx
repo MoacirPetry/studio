@@ -15,7 +15,7 @@ function UserDetailsForm() {
 
     try {
       const response = await fetch(
-        `https://lz7ak6pgx6.execute-api.us-east-1.amazonaws.com/Prod/ingest-user-data`,
+        `https://sqj5lau8ue.execute-api.us-east-1.amazonaws.com/Prod/ingest-user-data`,
         {
           method: "POST",
           headers: {
