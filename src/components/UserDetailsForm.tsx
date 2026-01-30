@@ -15,7 +15,7 @@ function UserDetailsForm() {
 
     try {
       const response = await fetch(
-        `https://sqj5lau8ue.execute-api.us-east-1.amazonaws.com/Prod/ingest-user-data`,
+        `/Prod/ingest-user-data`, // ✅ Relative path - goes through CloudFront
         {
           method: "POST",
           headers: {
