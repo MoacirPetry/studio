@@ -25,6 +25,8 @@ Resources:
           Properties:
             Path: /ingest-user-data
             Method: post
+            Auth:
+              ApiKeyRequired: true
     Metadata: # Manage esbuild properties
       BuildMethod: esbuild
       BuildProperties:
